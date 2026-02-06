@@ -5,13 +5,34 @@ import { verifyToken } from './lib/jwt';
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
+    // Skip middleware for static assets, API routes, and internal Next.js files
+    if (
+        pathname.startsWith('/api/') ||
+        pathname.startsWith('/_next/') ||
+        pathname.includes('.') ||
+        pathname === '/favicon.ico'
+    ) {
+        return NextResponse.next();
+    }
+
     // Get token from cookies
     const token = request.cookies.get('auth-token');
 
-    // Public routes - no authentication needed
-    const publicRoutes = ['/login', '/signup', '/'];
-    if (publicRoutes.includes(pathname)) {
-        // If user is logged in and trying to access login, redirect to appropriate dashboard
+    // Home page is public but has special logic
+    if (pathname === '/') {
+        if (token) {
+            const payload = await verifyToken(token.value);
+            if (payload) {
+                const redirectUrl = payload.role === 'admin' ? '/admin' : '/dashboard';
+                return NextResponse.redirect(new URL(redirectUrl, request.url));
+            }
+        }
+        return NextResponse.next();
+    }
+
+    // Auth routes - redirect if already logged in
+    const authRoutes = ['/login', '/signup'];
+    if (authRoutes.includes(pathname)) {
         if (token) {
             const payload = await verifyToken(token.value);
             if (payload) {
@@ -31,31 +52,19 @@ export async function middleware(request: NextRequest) {
         const payload = await verifyToken(token.value);
 
         if (!payload) {
-            // Invalid token - clear it and redirect to login
             const response = NextResponse.redirect(new URL('/login', request.url));
             response.cookies.delete('auth-token');
             return response;
         }
 
-        // Admin-only routes
-        if (pathname.startsWith('/admin')) {
-            if (payload.role !== 'admin') {
-                // Non-admin trying to access admin routes
-                return NextResponse.redirect(new URL('/dashboard', request.url));
-            }
+        if (pathname.startsWith('/admin') && payload.role !== 'admin') {
+            return NextResponse.redirect(new URL('/dashboard', request.url));
         }
-
-        return NextResponse.next();
     }
 
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: [
-        '/',
-        '/login',
-        '/dashboard/:path*',
-        '/admin/:path*',
-    ],
+    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
