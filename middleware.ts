@@ -24,7 +24,7 @@ export async function middleware(request: NextRequest) {
     }
 
     // Auth routes - redirect if already logged in
-    const authRoutes = ['/login', '/signup'];
+    const authRoutes = ['/login', '/signup', '/admin-login'];
     if (authRoutes.includes(pathname)) {
         if (token) {
             const payload = await verifyToken(token.value);

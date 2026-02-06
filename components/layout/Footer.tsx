@@ -7,8 +7,8 @@ import { usePathname } from 'next/navigation';
 export default function Footer() {
     const pathname = usePathname();
 
-    // Don't show footer on admin pages
-    if (pathname.startsWith('/admin')) return null;
+    // Don't show footer on admin, login, or signup pages
+    if (pathname.startsWith('/admin') || pathname === '/login' || pathname === '/signup') return null;
 
     return (
         <footer className="py-12 border-t border-gray-800 bg-black">
