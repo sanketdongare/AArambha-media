@@ -16,7 +16,7 @@ export default function Header() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     <Link href="/" className="flex items-center">
-                        <div className="relative w-40 h-16">
+                        <div className="relative w-[480px] h-[192px] -my-16">
                             <Image
                                 src="/logo.png"
                                 alt="AArambh Media"

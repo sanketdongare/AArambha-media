@@ -15,17 +15,19 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
                     <div>
-                        <div className="relative w-48 h-20 mb-6">
-                            <Image
-                                src="/logo.png"
-                                alt="AArambh Media"
-                                fill
-                                className="object-contain"
-                            />
+                        <div>
+                            <div className="relative w-[576px] h-[240px] -ml-12 mb-2">
+                                <Image
+                                    src="/logo.png"
+                                    alt="AArambh Media"
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
+                            <p className="text-gray-400 text-sm leading-relaxed max-w-xs px-4">
+                                Professional photography and cinematic videography for weddings, events, and special moments. Capturing emotions that last a lifetime.
+                            </p>
                         </div>
-                        <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-                            Professional photography and cinematic videography for weddings, events, and special moments. Capturing emotions that last a lifetime.
-                        </p>
                     </div>
 
                     <div>
