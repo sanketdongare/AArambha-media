@@ -43,8 +43,8 @@ const UserSchema = new mongoose.Schema<IUser>(
     }
 );
 
-// Create index on email for faster queries
-UserSchema.index({ email: 1 });
+// Email is already marked as unique in the schema, which creates an index
+// UserSchema.index({ email: 1 });
 
 const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
 
