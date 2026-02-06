@@ -84,18 +84,19 @@ A production-ready Next.js application with JWT authentication, role-based acces
 
 ## 📂 Project Structure
 
-```
-├── app/
-│   ├── api/          # API routes
-│   ├── admin/        # Admin panel pages
-│   ├── dashboard/    # User dashboard
-│   └── login/        # Login page
+```text
+app/
+├── page.tsx          # Premium Landing Page
+├── signup/           # New User Registration
+├── login/            # Secure Entry
+├── dashboard/        # Customer Area
+└── admin/            # Admin Control Center
 ├── components/
-│   ├── ui/          # Reusable UI components
-│   └── admin/       # Admin components
-├── lib/             # Utilities (auth, JWT, DB)
-├── models/          # MongoDB models
-└── middleware.ts    # Route protection
+│   ├── layout/       # Global Header & Footer
+│   ├── ui/           # Reusable UI System
+│   └── admin/        # Admin Dashboard Modules
+└── public/
+    └── logo.png      # Integrated Brand Asset
 ```
 
 ## 🛠️ Available Scripts
