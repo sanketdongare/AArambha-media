@@ -49,7 +49,52 @@ async function seed() {
         }
 
         // Create sample bookings
-        // ... (remaining code unchanged)
+        const bookingCount = await Booking.countDocuments();
+        if (bookingCount === 0) {
+            const sampleBookings = [
+                {
+                    customerName: 'Rahul & Priya',
+                    customerEmail: 'rahul@example.com',
+                    customerPhone: '+91 98765 43210',
+                    eventDate: new Date('2026-04-15'),
+                    eventType: 'Wedding',
+                    eventLocation: 'Mumbai, Maharashtra',
+                    packageSelected: 'gold' as const,
+                    packagePrice: 56000,
+                    status: 'confirmed' as const,
+                    notes: 'Full day wedding coverage with candid photography',
+                },
+                {
+                    customerName: 'Amit & Sneha',
+                    customerEmail: 'amit@example.com',
+                    customerPhone: '+91 98765 43211',
+                    eventDate: new Date('2026-05-20'),
+                    eventType: 'Pre-Wedding',
+                    eventLocation: 'Goa',
+                    packageSelected: 'pre-wedding-34000' as const,
+                    packagePrice: 34000,
+                    status: 'pending' as const,
+                    notes: 'Beach location pre-wedding shoot',
+                },
+                {
+                    customerName: 'Vikram & Anjali',
+                    customerEmail: 'vikram@example.com',
+                    customerPhone: '+91 98765 43212',
+                    eventDate: new Date('2026-03-10'),
+                    eventType: 'Wedding',
+                    eventLocation: 'Pune, Maharashtra',
+                    packageSelected: 'platinum' as const,
+                    packagePrice: 86000,
+                    status: 'completed' as const,
+                    notes: 'Premium package with drone coverage',
+                },
+            ];
+
+            await Booking.insertMany(sampleBookings);
+            console.log('✅ Sample bookings created:', sampleBookings.length);
+        } else {
+            console.log('✅ Bookings already exist');
+        }
 
         console.log('\n🎉 Database seeding completed successfully!\n');
         console.log('📧 Admin credentials:');
