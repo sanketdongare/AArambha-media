@@ -1,9 +1,4 @@
 import { SignJWT, jwtVerify } from 'jose';
-import { config } from 'dotenv';
-import path from 'path';
-
-// Load environment variables from .env.local
-config({ path: path.resolve(process.cwd(), '.env.local') });
 
 const JWT_SECRET = process.env.JWT_SECRET || 'aarambh-media-super-secret-jwt-key-2026';
 const secret = new TextEncoder().encode(JWT_SECRET);

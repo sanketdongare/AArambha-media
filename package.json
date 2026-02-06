@@ -3,8 +3,8 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "npm run clean && concurrently \"npm run db:start\" \"next dev\"",
-        "db:start": "powershell -Command \"if ((Get-Service -Name MongoDB -ErrorAction SilentlyContinue).Status -eq 'Running') { Write-Host 'MongoDB is already running' } else { net start MongoDB || '& \"C:\\Program Files\\MongoDB\\Server\\8.0\\bin\\mongod.exe\" --dbpath C:\\data\\db' }\"",
+        "dev": "concurrently \"npm run db:start\" \"next dev\"",
+        "db:start": "powershell -Command \"try { if ((Get-Service -Name MongoDB -ErrorAction SilentlyContinue).Status -eq 'Running') { exit 0 } } catch {}; net start MongoDB 2>$null; if ($?) { exit 0 }; '& \\\"C:\\Program Files\\MongoDB\\Server\\8.0\\bin\\mongod.exe\\\" --dbpath C:\\data\\db --smallfiles --quiet'\"",
         "clean": "rimraf .next",
         "build": "next build",
         "start": "next start",
