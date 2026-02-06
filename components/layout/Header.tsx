@@ -27,10 +27,12 @@ export default function Header() {
                         </div>
                     </Link>
 
-                    <nav className="hidden md:flex items-center gap-8">
-                        <Link href="/" className="text-gray-300 hover:text-primary-500 transition-colors font-medium">Home</Link>
-                        <Link href="/#packages" className="text-gray-300 hover:text-primary-500 transition-colors font-medium">Packages</Link>
-                        <Link href="/login" className="text-gray-300 hover:text-primary-500 transition-colors font-medium">Sign In</Link>
+                    <nav className="hidden md:flex items-center gap-6">
+                        <Link href="/" className="text-gray-300 hover:text-white transition-colors font-medium">Home</Link>
+                        <Link href="/#packages" className="text-gray-300 hover:text-white transition-colors font-medium">Packages</Link>
+                        <Link href="/login">
+                            <Button variant="outline" size="sm">Sign In</Button>
+                        </Link>
                         <Link href="/signup">
                             <Button size="sm">Get Started</Button>
                         </Link>

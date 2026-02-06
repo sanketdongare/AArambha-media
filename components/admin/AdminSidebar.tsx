@@ -30,7 +30,7 @@ export default function AdminSidebar() {
         <aside className="glass border-r border-white/10 h-screen sticky top-0 flex flex-col">
             {/* Logo Section */}
             <div className="p-6 border-b border-white/10">
-                <div className="flex items-center gap-3">
+                <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
                     <div className="relative w-12 h-12">
                         <Image
                             src="/logo.png"
@@ -40,10 +40,10 @@ export default function AdminSidebar() {
                         />
                     </div>
                     <div>
-                        <h2 className="font-bold text-white font-display">AArambh Media</h2>
-                        <p className="text-xs text-primary-500">Admin Panel</p>
+                        <h2 className="font-bold text-white font-display leading-tight">AArambh Media</h2>
+                        <p className="text-[10px] uppercase tracking-wider text-primary-500 font-semibold">Admin Panel</p>
                     </div>
-                </div>
+                </Link>
             </div>
 
             {/* Navigation */}

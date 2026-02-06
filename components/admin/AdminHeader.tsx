@@ -56,7 +56,7 @@ export default function AdminHeader() {
 
                     <Button variant="ghost" size="sm" onClick={handleLogout}>
                         <LogOut className="w-4 h-4" />
-                        Logout
+                        Sign Out
                     </Button>
                 </div>
             </div>

@@ -18,15 +18,8 @@ export async function middleware(request: NextRequest) {
     // Get token from cookies
     const token = request.cookies.get('auth-token');
 
-    // Home page is public but has special logic
+    // Home page is public and accessible to everyone
     if (pathname === '/') {
-        if (token) {
-            const payload = await verifyToken(token.value);
-            if (payload) {
-                const redirectUrl = payload.role === 'admin' ? '/admin' : '/dashboard';
-                return NextResponse.redirect(new URL(redirectUrl, request.url));
-            }
-        }
         return NextResponse.next();
     }
 
